@@ -51,11 +51,11 @@ test('redesign stylesheet includes the maqueta component layouts', async () => {
   assert.match(css, /\.cta-secondary/);
 });
 
-test('about section links to the location section', async () => {
+test('about section does not show the location button', async () => {
   const html = await readFile('index.html', 'utf8');
   const aboutSection = html.match(/<section class="about[\s\S]*?<\/section>/)?.[0] ?? '';
 
-  assert.match(aboutSection, /href="#contato"/);
+  assert.doesNotMatch(aboutSection, /href="#contato"/);
 });
 
 test('contact links declare analytics events for conversion tracking', async () => {
