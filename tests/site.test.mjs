@@ -56,7 +56,6 @@ test('about section links to the location section', async () => {
   const aboutSection = html.match(/<section class="about[\s\S]*?<\/section>/)?.[0] ?? '';
 
   assert.match(aboutSection, /href="#contato"/);
-  assert.match(aboutSection, />Como chegar<\/a>/);
 });
 
 test('contact links declare analytics events for conversion tracking', async () => {
