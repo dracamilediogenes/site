@@ -43,6 +43,23 @@ test('redesigned landing presents the approved headline and contact details', as
   assert.match(html, /Agendar pelo WhatsApp/);
 });
 
+test('SEO metadata and structured data describe the Florianópolis clinic', async () => {
+  const html = await readFile('index.html', 'utf8');
+  const jsonLd = html.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/)?.[1];
+
+  assert.match(html, /<title>Dra\. Camile Diógenes \| Dentista em Florianópolis, SC<\/title>/);
+  assert.match(html, /name="description" content="Dra\. Camile Diógenes, dentista em Florianópolis, SC\./);
+
+  const business = JSON.parse(jsonLd);
+  assert.equal(business['@type'], 'Dentist');
+  assert.equal(business.address.streetAddress, 'Av. Santa Catarina, 1197 - Sala 209 - Estreito');
+  assert.equal(business.address.postalCode, '88075-500');
+  assert.equal(business.address.addressLocality, 'Florianópolis');
+  assert.equal(business.email, 'dracamilediogenes@gmail.com');
+  assert.equal(business.openingHoursSpecification[0].opens, '08:00');
+  assert.equal(business.openingHoursSpecification[0].closes, '19:00');
+});
+
 test('redesign stylesheet includes the maqueta component layouts', async () => {
   const css = await readFile('styles.css', 'utf8');
 
