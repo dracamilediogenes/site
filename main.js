@@ -18,6 +18,18 @@ toggle?.addEventListener('click', () => {
 
 nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
+document.querySelectorAll('[data-analytics-event]').forEach((link) => {
+  link.addEventListener('click', () => {
+    if (typeof window.gtag !== 'function') return;
+
+    const params = {};
+    if (link.dataset.analyticsMethod) params.method = link.dataset.analyticsMethod;
+    if (link.dataset.analyticsNetwork) params.network = link.dataset.analyticsNetwork;
+    if (link.dataset.analyticsPlacement) params.placement = link.dataset.analyticsPlacement;
+    window.gtag('event', link.dataset.analyticsEvent, params);
+  });
+});
+
 window.addEventListener('scroll', () => {
   header?.classList.toggle('is-scrolled', window.scrollY > 12);
 }, { passive: true });

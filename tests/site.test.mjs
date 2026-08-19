@@ -50,3 +50,45 @@ test('redesign stylesheet includes the maqueta component layouts', async () => {
   assert.match(css, /\.contact-panel/);
   assert.match(css, /\.cta-secondary/);
 });
+
+test('about section links to the location section', async () => {
+  const html = await readFile('index.html', 'utf8');
+  const aboutSection = html.match(/<section class="about[\s\S]*?<\/section>/)?.[0] ?? '';
+
+  assert.match(aboutSection, /href="#contato"/);
+  assert.match(aboutSection, />Como chegar<\/a>/);
+});
+
+test('contact links declare analytics events for conversion tracking', async () => {
+  const [html, js] = await Promise.all([
+    readFile('index.html', 'utf8'),
+    readFile('main.js', 'utf8'),
+  ]);
+
+  assert.match(html, /data-analytics-event="generate_lead"/);
+  assert.match(html, /data-analytics-event="social_interaction"/);
+  assert.match(html, /data-analytics-event="contact"/);
+  assert.match(js, /data-analytics-event/);
+  assert.match(js, /gtag\('event'/);
+});
+
+test('Google Analytics is loaded only on the production domains', async () => {
+  const html = await readFile('index.html', 'utf8');
+
+  assert.match(html, /document\.createElement\('script'\)/);
+  assert.match(html, /googletagmanager\.com\/gtag\/js\?id=G-SVPKKJNE6K/);
+  assert.match(html, /isProduction/);
+});
+
+test('contact events declare their placement for Analytics reporting', async () => {
+  const [html, js] = await Promise.all([
+    readFile('index.html', 'utf8'),
+    readFile('main.js', 'utf8'),
+  ]);
+
+  for (const placement of ['navbar', 'hero', 'contact_section', 'phone', 'footer', 'floating_button']) {
+    assert.match(html, new RegExp(`data-analytics-placement="${placement}"`));
+  }
+  assert.match(js, /analyticsPlacement/);
+  assert.match(js, /params\.placement/);
+});

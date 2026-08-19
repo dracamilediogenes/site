@@ -1,18 +1,19 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SVPKKJNE6K"></script>
   <script>
-    const isProduction =
-    window.location.hostname === "dracamilediogenes.com" ||
-    window.location.hostname === "www.dracamilediogenes.com";
+    const isProduction = ["dracamilediogenes.com", "www.dracamilediogenes.com"].includes(window.location.hostname);
 
     if (isProduction) {
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      window.gtag = function(){window.dataLayer.push(arguments);};
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-SVPKKJNE6K');
 
-      gtag('config', 'G-SVPKKJNE6K');
+      const analyticsScript = document.createElement('script');
+      analyticsScript.async = true;
+      analyticsScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-SVPKKJNE6K';
+      document.head.appendChild(analyticsScript);
     }
   </script>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,11 +29,11 @@
   <header class="site-header"><div class="container nav-wrap">
     <a class="brand" href="#inicio" aria-label="Dra. Camile Diógenes, início"><img src="img/logo.png" alt="Dra. Camile Diógenes" /></a>
     <button class="menu-toggle" type="button" data-menu-toggle aria-label="Abrir menu" aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav id="site-nav" aria-label="Navegação principal"><a href="#sobre">Sobre</a><a href="#tratamentos">Tratamentos</a><a href="#contato">Contato</a><a class="cta cta-small" href="https://wa.me/5548988294565?text=Ol%C3%A1%2C%20Dra.%20Camile!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">Agendar consulta</a></nav>
+    <nav id="site-nav" aria-label="Navegação principal"><a href="#sobre">Sobre</a><a href="#tratamentos">Tratamentos</a><a href="#contato">Contato</a><a class="cta cta-small" href="https://wa.me/5548988294565?text=Ol%C3%A1%2C%20Dra.%20Camile!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" data-analytics-event="generate_lead" data-analytics-method="whatsapp" data-analytics-placement="navbar">Agendar consulta</a></nav>
   </div></header>
   <main id="conteudo">
     <section class="hero" id="inicio" aria-labelledby="hero-title"><div class="container hero-grid">
-      <div class="hero-copy" data-reveal><p class="eyebrow">Cirurgiã-dentista · CRO/SC 26.766</p><h1 id="hero-title">Seu sorriso começa<br />com <em>confiança.</em></h1><p>Odontologia moderna, atendimento humanizado e tratamentos personalizados para cuidar da sua saúde bucal com excelência.</p><div class="hero-actions"><a class="cta" href="https://wa.me/5548988294565?text=Ol%C3%A1%2C%20Dra.%20Camile!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">Agendar consulta</a><a class="cta cta-secondary" href="#tratamentos">Conheça os tratamentos</a></div></div>
+      <div class="hero-copy" data-reveal><p class="eyebrow">Cirurgiã-dentista · CRO/SC 26.766</p><h1 id="hero-title">Seu sorriso começa<br />com <em>confiança.</em></h1><p>Odontologia moderna, atendimento humanizado e tratamentos personalizados para cuidar da sua saúde bucal com excelência.</p><div class="hero-actions"><a class="cta" href="https://wa.me/5548988294565?text=Ol%C3%A1%2C%20Dra.%20Camile!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" data-analytics-event="generate_lead" data-analytics-method="whatsapp" data-analytics-placement="hero">Agendar consulta</a><a class="cta cta-secondary" href="#tratamentos">Conheça os tratamentos</a></div></div>
       <div class="hero-photo" data-reveal><img src="img/camile-01.jpeg" alt="Dra. Camile Diógenes" fetchpriority="high" /></div>
     </div></section>
     <section class="about section" id="sobre" aria-labelledby="sobre-title"><div class="container about-layout">
@@ -55,11 +56,11 @@
       <article class="treatment-card" data-reveal><img src="img/botox.jpeg" alt="Toxina botulínica" loading="lazy" /><h3>Toxina botulínica</h3><p>Aplicação personalizada para suavizar linhas de expressão e retardar o envelhecimento, buscando valorizar a autoestima e proporcionar resultados naturais, respeitando suas características e expectativas.</p></article>
       <article class="treatment-card" data-reveal><img src="img/hialuronico.jpeg" alt="Ácido hialurônico" loading="lazy" /><h3>Ácido hialurônico</h3><p>Procedimento realizado de forma individualizada para promover a harmonia facial, respeitando características naturais de cada paciente.</p></article>
       </div></div></section>
-    <section class="contact section" id="contato" aria-labelledby="contato-title"><div class="container"><div class="contact-heading" data-reveal><p class="eyebrow">Contato</p><h2 id="contato-title">Agende sua avaliação e dê o<br />primeiro passo para cuidar de você</h2><a class="cta" href="https://wa.me/5548988294565?text=Ol%C3%A1%2C%20Dra.%20Camile!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">Agendar pelo WhatsApp</a></div><div class="contact-panel" data-reveal>
-      <address><p><small>Telefone</small><a href="https://wa.me/5548988294565" target="_blank" rel="noopener">(48) 9 8829-4565</a></p><p><small>E-mail</small><a href="mailto:dracamilediogenes@gmail.com">dracamilediogenes@gmail.com</a></p><p><small>Instagram</small><a href="https://www.instagram.com/dra.camilediogenes" target="_blank" rel="noopener">@dra.camilediogenes</a></p><p><small>Endereço</small>Florianópolis — Santa Catarina, Brasil</p><p><small>Horário</small>Segunda a sexta · 08h às 19h</p></address>
+    <section class="contact section" id="contato" aria-labelledby="contato-title"><div class="container"><div class="contact-heading" data-reveal><p class="eyebrow">Contato</p><h2 id="contato-title">Agende sua avaliação e dê o<br />primeiro passo para cuidar de você</h2></div><div class="contact-panel" data-reveal>
+      <address><p><small>Telefone</small><a href="https://wa.me/5548988294565" target="_blank" rel="noopener" data-analytics-event="generate_lead" data-analytics-method="whatsapp" data-analytics-placement="phone">(48) 9 8829-4565</a></p><p><small>E-mail</small><a href="mailto:dracamilediogenes@gmail.com" data-analytics-event="contact" data-analytics-method="email" data-analytics-placement="contact_section">dracamilediogenes@gmail.com</a></p><p><small>Instagram</small><a href="https://www.instagram.com/dra.camilediogenes" target="_blank" rel="noopener" data-analytics-event="social_interaction" data-analytics-network="instagram" data-analytics-placement="contact_section">@dra.camilediogenes</a></p><p><small>Endereço</small>Florianópolis — Santa Catarina, Brasil</p><p><small>Horário</small>Segunda a sexta · 08h às 19h</p></address>
       <iframe title="Mapa de Florianópolis, Santa Catarina" src="https://www.google.com/maps?q=Florian%C3%B3polis%2C%20Santa%20Catarina%2C%20Brasil&output=embed" loading="lazy"></iframe>
     </div></div></section>
   </main>
-  <footer class="site-footer"><div class="container footer-grid"><img src="img/logo.png" alt="Dra. Camile Diógenes" /><div><p class="eyebrow">Contato</p><p>(48) 9 8829-4565<br />dracamilediogenes@gmail.com<br />Florianópolis — Santa Catarina, Brasil</p></div><div><p class="eyebrow">Links</p><a href="https://www.instagram.com/dra.camilediogenes" target="_blank" rel="noopener">Instagram</a><a href="https://wa.me/5548988294565" target="_blank" rel="noopener">WhatsApp</a><a href="#tratamentos">Tratamentos</a></div></div><div class="container copyright">© 2026 Dra. Camile Diógenes · CRO/SC 26.766</div></footer>
-  <a class="whatsapp-float" href="https://wa.me/5548988294565?text=Ol%C3%A1%2C%20Dra.%20Camile!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+  <footer class="site-footer"><div class="container footer-grid"><img src="img/logo.png" alt="Dra. Camile Diógenes" /><div><p class="eyebrow">Contato</p><p>(48) 9 8829-4565<br />dracamilediogenes@gmail.com<br />Florianópolis — Santa Catarina, Brasil</p></div><div><p class="eyebrow">Links</p><a href="https://www.instagram.com/dra.camilediogenes" target="_blank" rel="noopener" data-analytics-event="social_interaction" data-analytics-network="instagram" data-analytics-placement="footer">Instagram</a><a href="https://wa.me/5548988294565" target="_blank" rel="noopener" data-analytics-event="generate_lead" data-analytics-method="whatsapp" data-analytics-placement="footer">WhatsApp</a><a href="#tratamentos">Tratamentos</a></div></div><div class="container copyright">© 2026 Dra. Camile Diógenes · CRO/SC 26.766</div></footer>
+  <a class="whatsapp-float" href="https://wa.me/5548988294565?text=Ol%C3%A1%2C%20Dra.%20Camile!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp" data-analytics-event="generate_lead" data-analytics-method="whatsapp" data-analytics-placement="floating_button"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
 </body></html>
